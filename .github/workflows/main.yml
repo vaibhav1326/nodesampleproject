@@ -43,7 +43,7 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
       with:
-        task-definition: $github_workflow
+        task-definition: $github_workflow/ecs-task-definition.json
         container-name: NodeAPPlicationcont
         image: latest
 
