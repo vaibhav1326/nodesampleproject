@@ -36,6 +36,3 @@ jobs:
     - name: Pull the latest image
       run: |
           docker push 767398081771.dkr.ecr.us-east-1.amazonaws.com/node-project:latest
-    - name: Configure kubectl
-      run: |
-          aws eks update-kubeconfig --region us-east-1 --name NodeProject
