@@ -35,4 +35,14 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
     - name: Pull the latest image
       run: |
-          docker push 767398081771.dkr.ecr.us-east-1.amazonaws.com/node-project:latest
+          docker pull 767398081771.dkr.ecr.us-east-1.amazonaws.com/node-project:latest
+    - name: Configure Cluster
+      run:  |
+            aws eks update-kubeconfig --regio us-east-1 --name NodeProject
+    - name: Update ECS Task Definition
+      run: |
+        aws ecs register-task-definition --cli-input-json file://ecs-task-definition.json
+
+    - name: Update ECS Service
+      run: |
+        aws ecs update-service --cluster NodeProject --service arn:aws:ecs:us-east-1:767398081771:task/NodeProject/4552a9cb94a44ea7bbaaaf7f70afab2e --task-definition arn:aws:ecs:us-east-1:767398081771:task-definition/NodeApplication:1
