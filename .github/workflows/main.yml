@@ -18,7 +18,7 @@ jobs:
         ECR_REPOSITORY: node-project
         ECS_SERVICE: MY_ECS_SERVICE
         ECS_CLUSTER: NodeProject
-        ECS_TASK_DEFINITION: ${{ secrets.ECS_TASK_DEFINITION }}
+        ECS_TASK_DEFINITION: $github_workflow
         CONTAINER_NAME: NodeAPPlicationcont
         
     - name: Login to Amazon ECR
@@ -43,7 +43,7 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
       with:
-        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        task-definition: $github_workflow
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ steps.build-image.outputs.image }}
 
