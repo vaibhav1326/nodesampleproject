@@ -18,7 +18,7 @@ jobs:
         ECR_REPOSITORY: node-project
         ECS_SERVICE: MY_ECS_SERVICE
         ECS_CLUSTER: NodeProject
-        ECS_TASK_DEFINITION: NodeApplication
+        ECS_TASK_DEFINITION: ${{ secrets.ECS_TASK_DEFINITION }}
         CONTAINER_NAME: NodeAPPlicationcont
         
     - name: Login to Amazon ECR
